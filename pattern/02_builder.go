@@ -45,7 +45,6 @@ type Director struct {
 
 func NewDirector(_builder *IBuilder) *Director {
 	dir := Director{_builder}
-	dir.builder = _builder
 	return &dir
 }
 
