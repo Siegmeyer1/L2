@@ -41,3 +41,8 @@ func (ef *EasyfyingFacade) doComplexStuffEasy(easyInt int, easyString string) {
 	ef.cmplStruct.setComplexString(easyString)
 	ef.anthrCmplStruct.doComplexStuff(ef.cmplStruct)
 }
+
+func example_facade() {
+	facade := NewEasyfyingFacade()
+	facade.doComplexStuffEasy(42, "answer to greatest question of life")
+}

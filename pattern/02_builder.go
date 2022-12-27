@@ -55,7 +55,7 @@ func (d Director) construct(rooms, floors int) *House {
 	return (*d.builder).build()
 }
 
-func example() {
+func example_builder() {
 	var builder IBuilder = NewHouseBuilder()
 	director := NewDirector(&builder)
 	house := director.construct(1, 1)
