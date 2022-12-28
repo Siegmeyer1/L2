@@ -1,5 +1,7 @@
 package main
 
+import "L2/develop/dev11/internal/server"
+
 /*
 === HTTP server ===
 
@@ -22,6 +24,8 @@ package main
 	4. Код должен проходить проверки go vet и golint.
 */
 
-func main() {
+const address = "localhost:8080"
 
+func main() {
+	server.NewCalendarService(address).Run()
 }

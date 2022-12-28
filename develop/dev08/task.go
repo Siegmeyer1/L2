@@ -1,5 +1,15 @@
 package main
 
+import (
+	"L2/develop/dev08/internal"
+	"L2/develop/dev08/internal/builtins"
+	"bufio"
+	"fmt"
+	"log"
+	"os"
+	"strings"
+)
+
 /*
 === Взаимодействие с ОС ===
 
@@ -15,5 +25,28 @@ package main
 */
 
 func main() {
+	ReadCmd()
+}
 
+func ReadCmd() {
+	var (
+		commands []internal.ICommand
+		paths    []string
+	)
+	env := os.Getenv("PATH")
+	if env != "" {
+		paths = strings.Split(env, ":")
+	}
+	reader := bufio.NewReader(os.Stdin)
+	for {
+		fmt.Print("> ")
+		if line, _, err := reader.ReadLine(); err != nil {
+			log.Fatal(err)
+		} else if string(line) == "\\quit" {
+			break
+		} else if commands, err = builtins.CreateCommands(string(line), paths); err != nil {
+			log.Fatal(err)
+		}
+		internal.Execute(commands)
+	}
 }
